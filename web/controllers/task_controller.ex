@@ -12,8 +12,8 @@ defmodule ToDo.TaskController do
   end
 
   def new(conn, params) do
-    list_id   = String.to_integer Dict.get(params, "list_id")
-    changeset = Task.changeset(%Task{list_id: list_id})
+    list_id   = Dict.get(params, "list_id") |> String.to_integer
+    changeset = Task.changeset(%Task{})
     render conn, "new.html", %{changeset: changeset, list_id: list_id }
   end
 
