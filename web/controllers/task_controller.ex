@@ -12,7 +12,7 @@ defmodule ToDo.TaskController do
   end
 
   def new(conn, params) do
-    all_lists = Repo.all(List)
+    all_lists = Repo.all(ToDo.List)
     list_id   = Dict.get(params, "list_id")
     changeset = Task.changeset(%Task{list_id: list_id})
     render conn, "new.html", %{changeset: changeset, all_lists: all_lists}
