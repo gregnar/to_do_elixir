@@ -1,0 +1,22 @@
+<h2>Show task</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @task.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </li>
+
+  <li>
+    <strong>ListId:</strong>
+    <%= @task.list_id %>
+  </li>
+
+</ul>
+
+<%= link "Back", to: task_path(@conn, :index) %>

@@ -1,0 +1,12 @@
+<h2>Show list</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @list.name %>
+  </li>
+
+</ul>
+
+<%= link "Back", to: list_path(@conn, :index) %>

@@ -14,9 +14,9 @@ defmodule ToDo.Router do
 
   scope "/", ToDo do
     pipe_through :browser # Use the default browser stack
-    resources "lists", ListController do
-      resources "tasks", TaskController, except: [:index]
-    end
+    resources "/lists", ListController
+    resources "/tasks", TaskController, except: [:index]
+
     get "/", ListController, :index
 
   end
