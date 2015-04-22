@@ -13,10 +13,10 @@
   </li>
 
   <li>
-    <strong>ListId:</strong>
-    <%= @task.list_id %>
+    <strong>List:</strong>
+    <%= @task.list.name %>
   </li>
 
 </ul>
 
-<%= link "Back", to: task_path(@conn, :index) %>
+<%= link "Back", to: list_path(@conn, :show, @task.list_id) %>

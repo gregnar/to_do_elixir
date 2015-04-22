@@ -1,5 +1,7 @@
 <h2>Tasks for <%= @list.name %></h2>
 
+<%= link "Add Task", to: task_path(@conn, :new, list_id: @list.id) %>
+
 <ul>
   <%= for task <- @list.tasks do %>
     <li>

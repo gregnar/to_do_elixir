@@ -11,9 +11,11 @@ defmodule ToDo.TaskController do
     render conn, "index.html", tasks: tasks
   end
 
-  def new(conn, _params) do
-    changeset = Task.changeset(%Task{})
-    render conn, "new.html", changeset: changeset
+  def new(conn, params) do
+    all_lists = Repo.all(List)
+    list_id   = Dict.get(params, "list_id")
+    changeset = Task.changeset(%Task{list_id: list_id})
+    render conn, "new.html", %{changeset: changeset, all_lists: all_lists}
   end
 
   def create(conn, %{"task" => task_params}) do
@@ -31,7 +33,7 @@ defmodule ToDo.TaskController do
   end
 
   def show(conn, %{"id" => id}) do
-    task = Repo.get(Task, id)
+    task = Repo.get(Task, id) |> Repo.preload :list
     render conn, "show.html", task: task
   end
 
