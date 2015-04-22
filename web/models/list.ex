@@ -3,7 +3,7 @@ defmodule ToDo.List do
 
   schema "lists" do
     field :name, :string
-
+    has_many :tasks, Task
     timestamps
   end
 

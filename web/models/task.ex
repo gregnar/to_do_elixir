@@ -4,8 +4,7 @@ defmodule ToDo.Task do
   schema "tasks" do
     field :name, :string
     field :description, :string
-    field :list_id, :integer
-
+    belongs_to :list, ToDo.List
     timestamps
   end
 
