@@ -19,12 +19,18 @@
     <label>Description</label>
     <%= text_input f, :description, class: "form-control" %>
   </div>
-
   <div class="form-group">
     <label>List</label>
-    <select id="changeset_list_id" name="changeset[list_id]">
-      <%= for list <- @all_lists do %>
-        <option value="<%= list.id %>" ><%= list.name %></option>
+    <select id="task_list_id" name="task[list_id]">
+        <h2><%= @list_id %> </h2>
+        <h2><%= @list_id %> </h2>
+        <h2><%= @list_id %> </h2>
+      <%= for list <- all_lists do %>
+        <%= if list.id == @list_id do %> 
+          <option value="<%= list.id %>" selected><%= list.name %></option>
+        <% else %>
+          <option value="<%= list.id %>" ><%= list.name %></option>
+        <% end %>
       <% end%>
     </select>
   </div>
