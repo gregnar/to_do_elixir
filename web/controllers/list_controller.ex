@@ -31,7 +31,7 @@ defmodule ToDo.ListController do
   end
 
   def show(conn, %{"id" => id}) do
-    list = Repo.get(List, id)
+    list  = Repo.get(List, id) |> Repo.preload :tasks
     render conn, "show.html", list: list
   end
 
