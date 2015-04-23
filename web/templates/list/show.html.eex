@@ -1,15 +1,14 @@
 <h2>Tasks for <%= @list.name %></h2>
 
-<%= link "Add Task", to: task_path(@conn, :new, list_id: @list.id) %>
 
 <ul>
   <%= for task <- @list.tasks do %>
-    <li>
-      <strong><%= task.name %></strong>
-      <%= link "Edit/Move", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %>
-      <%= link "Delete", to: task_path(@conn, :delete, task), method: :delete, class: "btn btn-danger btn-xs" %>
-    </li>
+    <span class="task">
+        <span class="task-name"><%= task.name %></span>
+        <%= link "Edit/Move", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: task_path(@conn, :delete, task), method: :delete, class: "btn btn-danger btn-xs" %>
+    </span>
   <% end %>
 </ul>
-
-<%= link "Back", to: list_path(@conn, :index) %>
+<p><%= link "Add Task", to: task_path(@conn, :new, list_id: @list.id) %>
+</p>

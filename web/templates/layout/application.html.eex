@@ -15,6 +15,7 @@
     <div class="container">
       <div class="row text-center">
         <h1>ToDo</h1>
+        <%= link "All Lists", to: list_path(@conn, :index) %>
       </div>
       <p class="alert alert-info"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger"><%= get_flash(@conn, :error) %></p>

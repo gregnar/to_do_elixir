@@ -18,7 +18,6 @@ defmodule ToDo.TaskController do
   end
 
   def create(conn, %{"task" => task_params}) do
-    IO.inspect(task_params)
     changeset = Task.changeset(%Task{}, task_params)
 
     if changeset.valid? do
@@ -26,7 +25,7 @@ defmodule ToDo.TaskController do
 
       conn
       |> put_flash(:info, "Task created successfully.")
-      |> redirect(to: task_path(conn, :index))
+      |> redirect(to: list_path(conn, :show, task_params["task"]["list_id"]))
     else
       render conn, "new.html", changeset: changeset
     end
@@ -46,13 +45,14 @@ defmodule ToDo.TaskController do
   def update(conn, %{"id" => id, "task" => task_params}) do
     task = Repo.get(Task, id)
     changeset = Task.changeset(task, task_params)
+    IO.inspect(changeset)
 
     if changeset.valid? do
       Repo.update(changeset)
 
       conn
       |> put_flash(:info, "Task updated successfully.")
-      |> redirect(to: task_path(conn, :index))
+      |> redirect(to: list_path(conn, :show, Repo.get(Task, id).list_id))
     else
       render conn, "edit.html", task: task, changeset: changeset
     end

@@ -7,7 +7,7 @@ defmodule ToDo.ListController do
   plug :action
 
   def index(conn, _params) do
-    lists = Repo.all(List)
+    lists = Repo.all(List) |> Repo.preload :tasks
     render conn, "index.html", lists: lists
   end
 
