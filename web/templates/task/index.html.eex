@@ -5,7 +5,7 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>ListId</th>
+      <th>List</th>
 
       <th></th>
     </tr>
@@ -15,7 +15,7 @@
     <tr>
       <td><%= task.name %></td>
       <td><%= task.description %></td>
-      <td><%= task.list_id %></td>
+      <td><%= link task.list.name, to: list_path(@conn, :show, task.list) %></td>
 
       <td class="text-right">
         <%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %>
@@ -26,5 +26,3 @@
 <% end %>
   </tbody>
 </table>
-
-<%= link "New task", to: task_path(@conn, :new), class: "btn btn-primary" %>

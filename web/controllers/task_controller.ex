@@ -7,7 +7,7 @@ defmodule ToDo.TaskController do
   plug :action
 
   def index(conn, _params) do
-    tasks = Repo.all(Task)
+    tasks = Repo.all(Task) |> Repo.preload :list
     render conn, "index.html", tasks: tasks
   end
 
@@ -23,9 +23,12 @@ defmodule ToDo.TaskController do
     if changeset.valid? do
       Repo.insert(changeset)
 
+      require IEx
+      value = task_params
+      IEx.pry
       conn
       |> put_flash(:info, "Task created successfully.")
-      |> redirect(to: list_path(conn, :show, task_params["task"]["list_id"]))
+      |> redirect(to: list_path(conn, :show, task_params["list_id"]))
     else
       render conn, "new.html", changeset: changeset
     end
