@@ -22,10 +22,6 @@ defmodule ToDo.TaskController do
 
     if changeset.valid? do
       Repo.insert(changeset)
-
-      require IEx
-      value = task_params
-      IEx.pry
       conn
       |> put_flash(:info, "Task created successfully.")
       |> redirect(to: list_path(conn, :show, task_params["list_id"]))

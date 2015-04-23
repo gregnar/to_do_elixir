@@ -13,10 +13,10 @@
   <tbody>
 <%= for task <- @tasks do %>
     <tr>
+      <% task %>
       <td><%= task.name %></td>
       <td><%= task.description %></td>
       <td><%= link task.list.name, to: list_path(@conn, :show, task.list) %></td>
-
       <td class="text-right">
         <%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-default btn-xs" %>
         <%= link "Edit", to: task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %>
